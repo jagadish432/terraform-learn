@@ -37,3 +37,15 @@
 ->
 As terraform doesn't create any AWS CF stacks or any cloud similar stack. Terraform stores its state in .tfstate files and we can backup them in terraform cloud if needed.
 
+->
+terraform apply -refresh-only 
+to update the output variables from already applied resources.
+
+
+###############     Other points to note       ##################
+
+1. my terraform ssh file's password: our usual welcome password for 2022-23
+
+2. login to ec2 machine -> ssh ec2-user@3.83.223.19 -i ~/.ssh/terraform (the ssh file should have 400 permissions)
+
+3. 
