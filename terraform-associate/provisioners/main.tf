@@ -8,7 +8,12 @@ terraform {
     }
   }
   */
-  
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.40.0"
+    }
+  }
 }
 
 provider "aws" {
@@ -72,10 +77,25 @@ resource "aws_instance" "my_server_tf" {
   vpc_security_group_ids = [aws_security_group.sg_my_server_tf.id]
   user_data = data.template_file.user_data.rendered  # using the loaded userdata.yaml file content
 
-  provisioner "remote-exec" {
-    inline = [
-      "echo ${self.private_ip} >> /home/ec2-user/private_ips.txt"
-    ]
+  # provisioner "local-exec" {
+  #   command = "echo ${self.private_ip} >> private_ips.txt"
+  # }
+
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "echo ${self.private_ip} >> /home/ec2-user/private_ips.txt"
+  #   ]
+  #   connection {
+  #     type = "ssh"
+  #     user = "ec2-user"
+  #     #private_key = "${file("~/.ssh/terraform")}"
+  #     agent = true
+  #     host = "${self.public_ip}"
+  #   }
+  # }
+  provisioner "file" {
+    content     = "ami used: ${self.ami}"
+    destination = "/home/ec2-user/file.log"
     connection {
       type = "ssh"
       user = "ec2-user"
