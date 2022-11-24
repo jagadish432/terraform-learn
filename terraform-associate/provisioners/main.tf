@@ -1,4 +1,5 @@
 terraform {
+  /*
   cloud {
     organization = "jagadishdachepalli"
 
@@ -6,13 +7,8 @@ terraform {
       name = "provisioners"
     }
   }
-
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "4.40.0"
-    }
-  }
+  */
+  
 }
 
 provider "aws" {
@@ -75,7 +71,9 @@ resource "aws_instance" "my_server_tf" {
   key_name = "${aws_key_pair.deployer.key_name}"
   vpc_security_group_ids = [aws_security_group.sg_my_server_tf.id]
   user_data = data.template_file.user_data.rendered  # using the loaded userdata.yaml file content
-
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} >> private_ips.txt"
+  }
 
   tags = {
     Name = "my-server-tf"
