@@ -71,8 +71,18 @@ resource "aws_instance" "my_server_tf" {
   key_name = "${aws_key_pair.deployer.key_name}"
   vpc_security_group_ids = [aws_security_group.sg_my_server_tf.id]
   user_data = data.template_file.user_data.rendered  # using the loaded userdata.yaml file content
-  provisioner "local-exec" {
-    command = "echo ${self.private_ip} >> private_ips.txt"
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo ${self.private_ip} >> /home/ec2-user/private_ips.txt"
+    ]
+    connection {
+      type = "ssh"
+      user = "ec2-user"
+      #private_key = "${file("~/.ssh/terraform")}"
+      agent = true
+      host = "${self.public_ip}"
+    }
   }
 
   tags = {

@@ -20,6 +20,8 @@
 
 10. `terraform apply -refresh-only` to update the output variables from already applied resources.
 
+11. Incase of updated a specific resource and we want to apply terraform only for that resource then run `terraform apply -replace="aws_instance.my_server_tf"` (here 'aws_instance.my_server_tf is that resource in my terraform code)
+
 
 
 ## Terraform Variables
@@ -45,6 +47,14 @@
     vi. `terraform init`
 
 4. Incase of facing Apple m1 silicon chip - terraform issues, visit and use - https://github.com/kreuzwerker/m1-terraform-provider-helper; also check this StackOverflow thread - https://stackoverflow.com/a/74477115
+
+5. For remote-exec we need to pass either the password or the private key for ssh type auth, but if the ssh file is a passphrase protected then we need to perform the below steps to pass passphrase protected file
+    i. In local, run `ssh-add <ssh key path>`
+    ii. remove `private_key` from remote-exec connection block and add `agent = true` 
+    iii. output proof (refer below image)
+    ![remote-exec output image](../terraform-associate/screenshots/remote-exec-output.png)
+    
+6. 
 
 
 
