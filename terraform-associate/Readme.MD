@@ -1,6 +1,6 @@
 # Terraform commands
 
-1. `terraform init` to download provider and setup. it's also used to install modules when needed
+1. `terraform init` to download provider and setup. it's also used to install modules when we update the terraform config file.
 
 2. `terraform fmt` to format the code
 
@@ -21,6 +21,10 @@
 10. `terraform apply -refresh-only` to update the output variables from already applied resources.
 
 11. Incase of updated a specific resource and we want to apply terraform only for that resource then run `terraform apply -replace="aws_instance.my_server_tf"` (here 'aws_instance.my_server_tf is that resource in my terraform code)
+
+12. `terraform providers` to list using providers
+
+
 
 
 
@@ -54,7 +58,8 @@
     iii. output proof (refer below image)
     ![remote-exec output image](../terraform-associate/screenshots/remote-exec-output.png)
     
-6. same for `file provisioner` ![file-output](../terraform-associate/screenshots/file-output.png)
+6. same for `file provisioner` 
+    ![file-output](../terraform-associate/screenshots/file-output.png)
 
 
 
