@@ -58,7 +58,8 @@
     iii. output proof (refer below image)
     ![remote-exec output image](../terraform-associate/screenshots/remote-exec-output.png)
     
-6. same for `file provisioner` 
+6. same for `file provisioner`
+    
     ![file-output](../terraform-associate/screenshots/file-output.png)
 
 
