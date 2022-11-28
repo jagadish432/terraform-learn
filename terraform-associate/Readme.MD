@@ -24,15 +24,13 @@
 
 12. `terraform providers` to list using providers
 
-
+13. 
 
 
 
 ## Terraform Variables
 
-1. we can pass from cmd i.e., `terraform plan -var=instance_type="t2.nano"`
-
-2. create new terraform.tfvars file and declare the variables, and just run `terraform plan`
+![Variables](../terraform-associate/5-variables/Readme.md)
 
 
 
