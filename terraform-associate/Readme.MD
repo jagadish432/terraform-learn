@@ -22,7 +22,7 @@
 
 11. Incase of updated a specific resource and we want to apply terraform only for that resource then run `terraform apply -replace="aws_instance.my_server_tf"` (here 'aws_instance.my_server_tf is that resource in my terraform code)
 
-12. `terraform providers` to list using providers
+12. `terraform providers` to list the using providers
 
 13. 
 
